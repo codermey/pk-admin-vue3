@@ -1,16 +1,7 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": [
-    "env.d.ts",
-    "src/**/*",
-    "src/**/*.vue",
-    "typed-router.d.ts",
-    "auto-imports.d.ts",
-    "components.d.ts"
-  ],
-  "exclude": [
-    "src/**/__tests__/*"
-  ],
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "typed-router.d.ts", "auto-imports.d.ts", "components.d.ts"],
+  "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
     "moduleResolution": "Bundler",
     "noImplicitAny": false,
@@ -18,9 +9,8 @@
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    }
+      "@/*": ["./src/*"]
+    },
+    "types": ["vite-plugin-svg-icons/client"]
   }
 }

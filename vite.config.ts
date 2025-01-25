@@ -1,5 +1,6 @@
 import { fileURLToPath, URL } from 'node:url'
 
+import path from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -11,10 +12,28 @@ import Components from 'unplugin-vue-components/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 import Layouts from 'vite-plugin-vue-layouts'
 import { viteMockServe } from 'vite-plugin-mock'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
+    createSvgIconsPlugin({
+      // Specify the icon folder to be cached
+      iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
+      // Specify symbolId format
+      symbolId: 'icon-[dir]-[name]',
+      svgoOptions: {
+        full: true,
+        plugins: [
+          {
+            name: 'removeAttrs',
+            params: {
+              attrs: 'fill',
+            },
+          },
+        ],
+      },
+    }),
     VueRouter(),
     vue(),
     vueJsx(),
@@ -30,7 +49,6 @@ export default defineConfig({
       imports: ['vue', VueRouterAutoImports, '@vueuse/core'],
     }),
     Components({
-      directoryAsNamespace: true,
       collapseSamePrefixes: true,
     }),
     Layouts({
