@@ -13,6 +13,7 @@ import { VueRouterAutoImports } from 'unplugin-vue-router'
 import Layouts from 'vite-plugin-vue-layouts'
 import { viteMockServe } from 'vite-plugin-mock'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -47,9 +48,11 @@ export default defineConfig({
         /\.md$/, // .md
       ],
       imports: ['vue', VueRouterAutoImports, '@vueuse/core'],
+      resolvers: [ElementPlusResolver()],
     }),
     Components({
       collapseSamePrefixes: true,
+      resolvers: [ElementPlusResolver()],
     }),
     Layouts({
       layoutsDirs: 'src/layouts',
