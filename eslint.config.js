@@ -1,5 +1,5 @@
 import pluginVue from 'eslint-plugin-vue'
-import vueTsEslintConfig from '@vue/eslint-config-typescript'
+import { defineConfigWithVueTs, vueTsConfigs } from '@vue/eslint-config-typescript'
 import pluginVitest from '@vitest/eslint-plugin'
 import pluginCypress from 'eslint-plugin-cypress/flat'
 import skipFormatting from '@vue/eslint-config-prettier/skip-formatting'
@@ -16,8 +16,7 @@ export default [
     ignores: ['**/dist/**', '**/dist-ssr/**', '**/coverage/**'],
   },
 
-  ...pluginVue.configs['flat/recommended'],
-  ...vueTsEslintConfig(),
+  ...defineConfigWithVueTs(pluginVue.configs['flat/recommended'], vueTsConfigs.recommended),
 
   {
     ...pluginVitest.configs.recommended,
@@ -33,6 +32,15 @@ export default [
     rules: {
       'vue/multi-word-component-names': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unused-expressions': ['error', { allowShortCircuit: true }],
+      'vue/block-lang': [
+        'error',
+        {
+          script: {
+            lang: ['ts', 'tsx'],
+          },
+        },
+      ],
       'vue/block-order': [
         'error',
         {
@@ -48,6 +56,7 @@ export default [
       ],
     },
   },
+
   skipFormatting,
   unocss,
 ]
