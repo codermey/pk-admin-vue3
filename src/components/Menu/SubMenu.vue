@@ -1,0 +1,31 @@
+<script lang="ts" setup>
+import { useMenu } from './useMenu'
+import type { IconOptions, SubMenuProps } from './types'
+
+const props = defineProps<SubMenuProps>()
+
+const iconProps = inject('iconProps') as IconOptions
+
+const { getIndex, menuHasChildren } = useMenu()
+
+const subAttrs = computed(() => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { data, ...resetProps } = props
+  return resetProps
+})
+</script>
+
+<template>
+  <MenuItem v-if="!menuHasChildren(data)" :data="data" :collapse="collapse" />
+
+  <!-- 下拉菜单 -->
+  <ElSubMenu v-else :index="getIndex(data)" :disabled="data.meta?.disabled">
+    <template v-if="!data.meta?.icon" #title>{{ data.meta?.title }}</template>
+    <!-- 侧栏，折叠 -->
+    <template v-else #title>
+      <Iconify :icon="data.meta?.icon!" :style="iconProps?.style" :class="iconProps?.class" />
+      <span>{{ data.meta?.title }}</span>
+    </template>
+    <SubMenu v-for="child in data.children" :key="`${data.path}/${child.path}`" v-bind="subAttrs" :data="child" />
+  </ElSubMenu>
+</template>

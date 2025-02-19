@@ -7,11 +7,4 @@ const router = createRouter({
   routes: setupLayouts(routes),
 })
 
-router.beforeEach((to, from, next) => {
-  if (to.path === '/') {
-    return next('/home')
-  }
-  next()
-})
-
 export default router

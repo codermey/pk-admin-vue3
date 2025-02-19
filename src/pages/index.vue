@@ -1,5 +1,10 @@
 <script lang="ts" setup>
-import FullScreen from '@/components/Themes/FullScreen.vue'
+definePage({
+  meta: {
+    title: '首页',
+    icon: 'mdi:home',
+  },
+})
 </script>
 
 <template>
@@ -8,13 +13,4 @@ import FullScreen from '@/components/Themes/FullScreen.vue'
     <RouterLink class="hover:underline" to="/about">Go to About Page</RouterLink>
     <IconfontIcon name="down-line" />
   </div>
-
-  <DarkModeToggle dark-mode />
-
-  <FullScreen />
 </template>
-
-<route lang="yaml">
-meta:
-  layout: default
-</route>

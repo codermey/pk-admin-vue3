@@ -1,16 +1,14 @@
 <script setup lang="ts">
 definePage({
   meta: {
-    title: '图标选择器',
-    icon: 'mdi:eyedropper',
+    title: '组件示例',
+    icon: 'mdi:apps',
   },
 })
 </script>
 
 <template>
-  <div>
-    <IconPicker />
-  </div>
+  <div></div>
 </template>
 
 <style scoped></style>

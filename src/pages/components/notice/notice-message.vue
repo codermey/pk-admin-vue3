@@ -2,6 +2,13 @@
 import type { NoticeActionsItem, NoticeMessageListOptions } from '@/components/Notice/types'
 import type { TabsPaneContext } from 'element-plus'
 
+definePage({
+  meta: {
+    title: '消息通知',
+    icon: 'mdi:message',
+  },
+})
+
 const exampleData: NoticeMessageListOptions[] = [
   {
     title: '系统通知',

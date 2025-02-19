@@ -1,6 +1,13 @@
 <script lang="ts" setup>
 import { loadIcon, type IconifyIcon } from '@iconify/vue'
 
+definePage({
+  meta: {
+    title: '图标列表',
+    icon: 'mdi:emoticon-neutral-outline',
+  },
+})
+
 const source = ref('')
 const { copied, copy } = useClipboard({ source })
 
