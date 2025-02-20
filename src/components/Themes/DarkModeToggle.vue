@@ -4,7 +4,7 @@ const props = defineProps<{ darkMode?: boolean }>()
 const preferredDark = usePreferredDark()
 const isDark = useStorage('dark-mode', props.darkMode)
 
-watchEffect(async () => {
+watch(isDark, async () => {
   await nextTick()
   toggleDarkMode(isDark.value)
 })
@@ -16,6 +16,7 @@ onBeforeMount(() => {
   if (typeof isDark.value === 'undefined' && !props.darkMode) {
     isDark.value = preferredDark.value
   }
+  toggleDarkMode(isDark.value)
 })
 
 const toggleDarkMode = (isDark: boolean) => {
