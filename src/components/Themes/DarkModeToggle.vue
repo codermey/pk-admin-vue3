@@ -1,12 +1,26 @@
 <script setup lang="ts">
 const props = defineProps<{ darkMode?: boolean }>()
+const emits = defineEmits<{
+  change: [value: boolean]
+}>()
 
 const preferredDark = usePreferredDark()
 const isDark = useStorage('dark-mode', props.darkMode)
 
+watch(
+  () => props.darkMode,
+  (newVal) => {
+    console.log('newVal', newVal)
+    isDark.value = newVal
+  },
+  {
+    immediate: true,
+  },
+)
 watch(isDark, async () => {
   await nextTick()
   toggleDarkMode(isDark.value)
+  emits('change', isDark.value)
 })
 watch(preferredDark, () => {
   isDark.value = preferredDark.value

@@ -1,31 +1,56 @@
 <script setup lang="ts">
+import type { ThemeSettingsProps } from '../Themes/types'
 import type { HeaderProps } from './types'
 
-const props = withDefaults(defineProps<HeaderProps>(), {
-  collapsed: false,
-})
+const collapsed = defineModel<boolean>('collapsed', { default: false })
+
+const props = defineProps<HeaderProps>()
 
 const emits = defineEmits<{
-  command: [string | number | object]
+  menuCommand: [string | number | object]
+  settingChange: [settings: ThemeSettingsProps]
 }>()
 
-const handleCommand = (command: string | number | object) => {
-  emits('command', command)
-}
+const localProps = reactive({ ...props })
 
 const avatarMenuProps = computed(() => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { collapsed, locales, ...restProps } = props
+  const { locales, settings, ...restProps } = props
   return restProps
 })
+
+watch(
+  () => localProps.settings,
+  () => {
+    emits('settingChange', localProps.settings!)
+  },
+  { deep: true },
+)
+
+const handleCommand = (command: string | number | object) => {
+  emits('menuCommand', command)
+}
+const handleSettingChange = (settings: ThemeSettingsProps) => {
+  localProps.settings = settings
+}
+const handleDarkModeChange = (darkMode: boolean) => {
+  localProps.settings!.darkMode = darkMode
+}
 </script>
 
 <template>
   <ElRow class="px-2" align="middle">
-    <Iconify :icon="collapsed ? 'ep:expand' : 'ep:fold'" class="cursor-pointer text-xl" />
-    <div class="flex-grow" />
+    <Iconify
+      :icon="collapsed ? 'ep:expand' : 'ep:fold'"
+      class="cursor-pointer text-xl"
+      @click="collapsed = !collapsed"
+    />
+    <div class="flex-grow">
+      <slot />
+    </div>
     <ElRow align="middle">
-      <DarkModeToggle class="mr-4" />
+      <ThemeSettings class="mr-4" v-bind="settings" @change="handleSettingChange" />
+      <DarkModeToggle class="mr-4" :dark-mode="localProps.settings?.darkMode" @change="handleDarkModeChange" />
       <ChangeLocale :locales="locales" class="mr-4" />
       <FullScreen />
       <ElDivider direction="vertical" class="mx-4!" />

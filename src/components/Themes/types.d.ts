@@ -19,3 +19,18 @@ export interface ChangeLocaleProps extends Partial<IconProps> {
   locales: LocaleItem[]
   iconClass?: string
 }
+
+export type MenuModeType = 'siderbar' | 'mix' | 'top' | 'mixbar'
+
+export interface ThemeSettingsProps {
+  themeColor?: string
+  darkMode?: boolean
+  menuWidth?: number
+  showLogo?: boolean
+  switchAnimation?: string
+  showTabs?: boolean
+  headerFixed?: boolean
+  showBreadcrumb?: boolean
+  menuMode?: MenuModeType
+  menuBackground?: string
+}

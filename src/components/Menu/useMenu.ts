@@ -1,10 +1,15 @@
 import type { AppRouteMenuItem } from './types'
 
 export const useMenu = () => {
-  const generateMenuKey = (menus: AppRouteMenuItem[], level = '1') => {
-    const filterMenus = menus
+  const filterAndOrderMenus = (menus: AppRouteMenuItem[]) => {
+    return menus
       .filter((menu) => !menu.meta?.hideMenu)
       .sort((a, b) => (a.meta?.order ?? 1000) - (b.meta?.order ?? 1000))
+      .map((menu) => ({ ...menu }))
+  }
+
+  const generateMenuKey = (menus: AppRouteMenuItem[], level = '1') => {
+    const filterMenus = filterAndOrderMenus(menus)
 
     let i = 1
     filterMenus.forEach((menu) => {
@@ -21,6 +26,21 @@ export const useMenu = () => {
     return filterMenus
   }
 
+  // 获取顶级菜单
+  const getTopMenus = (menus: AppRouteMenuItem[]) => {
+    return filterAndOrderMenus(menus).map((menu) => {
+      delete menu.children
+      return menu
+    })
+  }
+
+  // 获取子级菜单
+  const getSubMenus = (menus: AppRouteMenuItem[]) => {
+    const route = useRoute()
+    const path = computed(() => route.path)
+    return filterAndOrderMenus(menus).find((menu) => menu.path === path.value)?.children || []
+  }
+
   const getIndex = (menu: AppRouteMenuItem): string => {
     return `${menu.meta?.key}`
   }
@@ -31,6 +51,8 @@ export const useMenu = () => {
 
   return {
     generateMenuKey,
+    getTopMenus,
+    getSubMenus,
     getIndex,
     menuHasChildren,
   }

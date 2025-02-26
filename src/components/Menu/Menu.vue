@@ -6,18 +6,14 @@ const props = withDefaults(defineProps<MenuProps>(), {
   backgroundColor: 'transparent',
   menus: () => [],
   iconProps: () => ({
-    style: {
-      marginRight: '10px',
-      fontSize: '18px',
-    },
+    class: 'text-lg mr-2',
   }),
 })
-
-provide('iconProps', props.iconProps)
 
 const slots = useSlots()
 const { generateMenuKey } = useMenu()
 
+const iconProps = computed(() => (props.collapse ? { ...props.iconProps, class: 'text-lg' } : props.iconProps))
 const filterMenus = computed(() => generateMenuKey(props.menus))
 
 const menuProps = computed(() => {
@@ -25,6 +21,8 @@ const menuProps = computed(() => {
   const { menus, subMenuProps, ...restProps } = props
   return restProps
 })
+
+provide('iconProps', iconProps)
 </script>
 
 <template>
