@@ -1,6 +1,7 @@
 import { fileURLToPath, URL } from 'node:url'
 
 import path from 'path'
+import fs from 'fs'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -16,8 +17,29 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 
+/**
+ * @description 过滤掉element-plus中不需要的locale文件
+ * @param id
+ */
+function externalElementPlusLocale(id: string) {
+  const localesDir = path.resolve(__dirname, 'locales')
+  const localeFiles = fs.readdirSync(localesDir).map((file) => file.match(/([\w-]*)\.json$/)?.[1] || '')
+
+  if (id.includes('element-plus/dist/locale')) {
+    const basename = path.basename(id, '.mjs')
+    return !localeFiles.some((file) => file.toLowerCase() === basename)
+  }
+
+  return false
+}
+
 // https://vite.dev/config/
 export default defineConfig({
+  build: {
+    rollupOptions: {
+      external: externalElementPlusLocale,
+    },
+  },
   plugins: [
     VueI18nPlugin({
       compositionOnly: true,
