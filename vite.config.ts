@@ -14,10 +14,15 @@ import Layouts from 'vite-plugin-vue-layouts'
 import { viteMockServe } from 'vite-plugin-mock'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
+    VueI18nPlugin({
+      compositionOnly: true,
+      include: [path.resolve(__dirname, './locales/**')],
+    }),
     createSvgIconsPlugin({
       // Specify the icon folder to be cached
       iconDirs: [path.resolve(process.cwd(), 'src/assets/icons')],
