@@ -1,31 +1,41 @@
 <script setup lang="ts">
-import type { ChangeLocaleProps } from './types'
+import type { ChangeLocaleProps, LocaleItem } from './types'
 
 const props = defineProps<ChangeLocaleProps>()
+const emits = defineEmits<{
+  change: [item: LocaleItem]
+}>()
+
+const currentIndex = ref(0)
 
 const IconPropsComputed = computed(() => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { icon, iconClass, ...resetProps } = props
   return resetProps
 })
+
+const handleChange = (item: LocaleItem) => {
+  emits('change', item)
+}
 </script>
 
 <template>
-  <ElDropdown trigger="click">
-    <span>
-      <Iconify icon="ion:language" class="cursor-pointer text-xl" v-bind="IconPropsComputed" :class="iconClass" />
-    </span>
-    <template #dropdown>
-      <ElDropdownMenu>
-        <ElDropdownItem v-for="(locale, index) in locales" :key="index" :command="locale.name">
-          <div class="flex items-center gap-2">
-            <Iconify :icon="locale.icon" v-bind="IconPropsComputed" :class="iconClass" />
-            <span>{{ locale.text }}</span>
-          </div>
-        </ElDropdownItem>
-      </ElDropdownMenu>
+  <DropDown
+    v-model="currentIndex"
+    :list="locales"
+    :icon-props="IconPropsComputed"
+    :icon-class="iconClass"
+    @change="handleChange"
+  >
+    <template #header>
+      <span>
+        <Iconify icon="ion:language" class="cursor-pointer text-xl" v-bind="IconPropsComputed" :class="iconClass" />
+      </span>
     </template>
-  </ElDropdown>
+    <template #item="{ item }">
+      <span>{{ item.text }}</span>
+    </template>
+  </DropDown>
 </template>
 
 <style scoped></style>
