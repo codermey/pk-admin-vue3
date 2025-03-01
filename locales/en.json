@@ -1,5 +1,24 @@
 {
-  "hello": "hello",
-  "login": "login",
-  "logout": "logout"
+  "message": {
+    "copied": "Copied",
+    "copy-success": "Copy success"
+  },
+  "components": {
+    "hide-text": "Hide text",
+    "select-icon": "Select icon",
+    "show-text": "Show text",
+    "cancel": "Cancel",
+    "confirm": "Confirm"
+  },
+  "pages": {
+    "about": "About",
+    "components": "Components",
+    "contact": "Contact",
+    "home": "Home",
+    "icon-list": "Icon List",
+    "icon-picker": "Icon Picker",
+    "icons": "Icons",
+    "notice": "Notice",
+    "notice-message": "Notice Message"
+  }
 }

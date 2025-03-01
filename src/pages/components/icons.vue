@@ -1,13 +1,13 @@
 <script setup lang="ts">
 definePage({
   meta: {
-    title: '图标组件',
+    title: 'pages.icons',
   },
 })
 </script>
 
 <template>
-  <div></div>
+  <RouterView />
 </template>
 
 <style scoped></style>

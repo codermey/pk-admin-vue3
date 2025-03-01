@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePage({
   meta: {
-    title: '图标选择器',
+    title: 'pages.icon-picker',
     icon: 'mdi:eyedropper',
   },
 })

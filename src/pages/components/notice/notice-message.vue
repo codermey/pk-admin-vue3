@@ -4,7 +4,7 @@ import type { TabsPaneContext } from 'element-plus'
 
 definePage({
   meta: {
-    title: '消息通知',
+    title: 'pages.notice-message',
     icon: 'mdi:message',
   },
 })

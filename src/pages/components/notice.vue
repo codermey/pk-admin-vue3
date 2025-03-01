@@ -1,13 +1,13 @@
 <script setup lang="ts">
 definePage({
   meta: {
-    title: '通知组件',
+    title: 'pages.notice',
   },
 })
 </script>
 
 <template>
-  <div></div>
+  <RouterView />
 </template>
 
 <style scoped></style>

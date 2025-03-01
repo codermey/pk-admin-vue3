@@ -1,12 +1,8 @@
 <script lang="ts" setup>
 import { loadIcon, type IconifyIcon } from '@iconify/vue'
+import { useI18n } from 'vue-i18n'
 
-definePage({
-  meta: {
-    title: '图标列表',
-    icon: 'mdi:emoticon-neutral-outline',
-  },
-})
+const { t } = useI18n()
 
 const source = ref('')
 const { copied, copy } = useClipboard({ source })
@@ -27,7 +23,7 @@ const handleClick = async (icon: string) => {
   copied &&
     ElMessage({
       showClose: true,
-      message: '已复制！',
+      message: t('message.copied'),
       type: 'success',
     })
 }
@@ -36,12 +32,23 @@ function objectToSvg(obj: IconifyIcon) {
   const { left, top, width, height, rotate, vFlip, hFlip, body } = obj
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" transform="translate(${left}, ${top}) rotate(${rotate}) scale(${hFlip ? -1 : 1}, ${vFlip ? -1 : 1})">${body}</svg>`
 }
+
+definePage({
+  meta: {
+    title: 'pages.icon-list',
+    icon: 'mdi:emoticon-neutral-outline',
+  },
+})
 </script>
 
 <template>
   <div class="flex justify-end gap-x-8">
     <ElSwitch v-model="copyTypeFlag" class="mb-2" active-text="Copy icon code" inactive-text="Copy SVG content" />
-    <ElSwitch v-model="showText" active-text="显示文字" inactive-text="隐藏文字" />
+    <ElSwitch
+      v-model="showText"
+      :active-text="$t('components.show-text')"
+      :inactive-text="$t('components.hide-text')"
+    />
   </div>
   <IconList :show-text="showText" @click="handleClick" />
 </template>

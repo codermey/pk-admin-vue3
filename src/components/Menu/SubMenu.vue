@@ -20,11 +20,11 @@ const subAttrs = computed(() => {
 
   <!-- 下拉菜单 -->
   <ElSubMenu v-else :index="getIndex(data)" :disabled="data.meta?.disabled">
-    <template v-if="!data.meta?.icon" #title>{{ data.meta?.title }}</template>
+    <template v-if="!data.meta?.icon" #title>{{ $t(data.meta?.title || '') }}</template>
     <!-- 侧栏，折叠 -->
     <template v-else #title>
       <Iconify :icon="data.meta?.icon!" :style="iconProps?.style" :class="iconProps?.class" />
-      <span>{{ data.meta?.title }}</span>
+      <span>{{ $t(data.meta?.title || '') }}</span>
     </template>
     <SubMenu v-for="child in data.children" :key="`${data.path}/${child.path}`" v-bind="subAttrs" :data="child" />
   </ElSubMenu>

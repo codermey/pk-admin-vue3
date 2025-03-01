@@ -1,14 +1,14 @@
 <script setup lang="ts">
 definePage({
   meta: {
-    title: '组件示例',
+    title: 'pages.components',
     icon: 'mdi:apps',
   },
 })
 </script>
 
 <template>
-  <div></div>
+  <RouterView />
 </template>
 
 <style scoped></style>

@@ -1,5 +1,24 @@
 {
-  "hello": "你好",
-  "login": "登录",
-  "logout": "退出"
+  "message": {
+    "copied": "已复制",
+    "copy-success": "复制成功"
+  },
+  "components": {
+    "show-text": "显示文字",
+    "hide-text": "隐藏文字",
+    "cancel": "取消",
+    "confirm": "确定",
+    "select-icon": "选择图标"
+  },
+  "pages": {
+    "home": "首页",
+    "about": "关于",
+    "contact": "联系",
+    "components": "组件示例",
+    "notice": "通知组件",
+    "icons": "图标组件",
+    "icon-picker": "图标选择器",
+    "icon-list": "图标列表",
+    "notice-message": "消息通知"
+  }
 }

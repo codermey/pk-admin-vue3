@@ -11,17 +11,17 @@ const { getIndex } = useMenu()
 
 <template>
   <!-- 单个item -->
-  <ElMenuItem v-if="!data.meta?.icon" :index="getIndex(data)">{{ data.meta?.title }}</ElMenuItem>
+  <ElMenuItem v-if="!data.meta?.icon" :index="getIndex(data)">{{ $t(data.meta?.title || '') }}</ElMenuItem>
   <template v-else>
     <!-- 侧栏 -->
     <ElMenuItem v-if="!collapse" :index="getIndex(data)">
       <iconify :icon="data.meta.icon" :style="iconProps?.style" :class="iconProps?.class" />
-      <span>{{ data.meta?.title }}</span>
+      <span>{{ $t(data.meta?.title || '') }}</span>
     </ElMenuItem>
     <!-- 折叠 -->
     <ElMenuItem v-else :index="getIndex(data)">
       <Iconify :icon="data.meta.icon" :style="iconProps?.style" :class="iconProps?.class" />
-      <template #title>{{ data.meta?.title }}</template>
+      <template #title>{{ $t(data.meta?.title || '') }}</template>
     </ElMenuItem>
   </template>
 </template>

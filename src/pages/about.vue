@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 definePage({
   meta: {
-    title: '关于我们',
+    title: 'pages.about',
     icon: 'mdi:information',
   },
 })

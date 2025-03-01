@@ -29,7 +29,7 @@ const handleConfirm = () => {
 </script>
 
 <template>
-  <ElButton type="primary" @click="toggle(true)">选择图标</ElButton>
+  <ElButton type="primary" @click="toggle(true)">{{ $t('components.select-icon') }}</ElButton>
 
   <ElDialog v-model="visible" width="50%">
     <IconList :show-text="false" item-class="py-1" active-class="text-sky-300" @click="handleIconClick" />
@@ -46,12 +46,12 @@ const handleConfirm = () => {
     </div>
 
     <div>
-      <span>选择的图标：</span>
+      <span>{{ $t('components.select-icon') }}：</span>
       <Icon :icon="iconName" :style="{ fontSize: `${fontSize}px`, color }" />
     </div>
     <template #footer>
-      <ElButton @click="handleCancel">取消</ElButton>
-      <ElButton type="primary" @click="handleConfirm">确认</ElButton>
+      <ElButton @click="handleCancel">{{ $t('components.cancel') }}</ElButton>
+      <ElButton type="primary" @click="handleConfirm">{{ $t('components.confirm') }}</ElButton>
     </template>
   </ElDialog>
 </template>

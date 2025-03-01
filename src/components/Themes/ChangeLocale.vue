@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { ChangeLocaleProps, LocaleItem } from './types'
+import { loadLocaleMessages } from '@/modules/i18n'
 
 const props = defineProps<ChangeLocaleProps>()
 const emits = defineEmits<{
@@ -15,6 +16,7 @@ const IconPropsComputed = computed(() => {
 })
 
 const handleChange = (item: LocaleItem) => {
+  loadLocaleMessages(item.name)
   emits('change', item)
 }
 </script>
