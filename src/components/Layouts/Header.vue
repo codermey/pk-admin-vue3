@@ -11,7 +11,7 @@ const emits = defineEmits<{
   settingChange: [settings: ThemeSettingsProps]
 }>()
 
-const localProps = reactive({ ...props })
+const localSettings = ref({ ...props.settings })
 
 const avatarMenuProps = computed(() => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -20,9 +20,9 @@ const avatarMenuProps = computed(() => {
 })
 
 watch(
-  () => localProps.settings,
+  () => localSettings.value,
   () => {
-    emits('settingChange', localProps.settings!)
+    emits('settingChange', localSettings.value)
   },
   { deep: true },
 )
@@ -31,10 +31,10 @@ const handleCommand = (command: string | number | object) => {
   emits('menuCommand', command)
 }
 const handleSettingChange = (settings: ThemeSettingsProps) => {
-  localProps.settings = settings
+  localSettings.value = settings
 }
 const handleDarkModeChange = (darkMode: boolean) => {
-  localProps.settings!.darkMode = darkMode
+  localSettings.value!.darkMode = darkMode
 }
 </script>
 
@@ -50,7 +50,7 @@ const handleDarkModeChange = (darkMode: boolean) => {
     </div>
     <ElRow align="middle">
       <ThemeSettings class="mr-4" v-bind="settings" @change="handleSettingChange" />
-      <DarkModeToggle class="mr-4" :dark-mode="localProps.settings?.darkMode" @change="handleDarkModeChange" />
+      <DarkModeToggle class="mr-4" :dark-mode="localSettings?.darkMode" @change="handleDarkModeChange" />
       <ChangeLocale :locales="locales" class="mr-4" />
       <FullScreen />
       <ElDivider direction="vertical" class="mx-4!" />
