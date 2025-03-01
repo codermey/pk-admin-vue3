@@ -15,6 +15,7 @@ interface ThemeSettingOptions extends HeaderProps {
   avatarMenus: DropdownMenuItem[]
 }
 
+const router = useRouter()
 const { getSubMenus, getTopMenus } = useMenu()
 
 const collapsed = ref(false)
@@ -38,12 +39,17 @@ const themeSetting = ref<ThemeSettingOptions>({
   ],
 })
 
-const menus = computed(() => generateMenuData(routes))
 const settings = computed(() => themeSetting.value.settings)
-// 菜单宽度
-const menuWidth = computed(() => (settings.value?.menuWidth ? settings.value.menuWidth + 'px' : '240px'))
+
+const menus = computed(() => generateMenuData(routes))
+const mixbarMenus = computed(() => (settings.value?.menuMode === 'mixbar' ? getTopMenus(menus.value) : menus.value))
+const mixMenus = computed(() => (settings.value?.menuMode === 'mix' ? getTopMenus(menus.value) : menus.value))
+
 // 判断二级菜单的顶级是否所有的菜单项都设置了icon
 const isFullIcon = computed(() => getSubMenus(menus.value).every((menu) => !!menu.meta?.icon))
+
+// 菜单宽度
+const menuWidth = computed(() => (settings.value?.menuWidth ? settings.value.menuWidth + 'px' : '240px'))
 // mixbar 菜单宽度
 const mixbarMenuWidth = computed(() => {
   if (settings.value?.menuMode === 'mixbar' && isFullIcon.value) {
@@ -52,13 +58,13 @@ const mixbarMenuWidth = computed(() => {
     return collapsed.value ? '64px' : menuWidth.value
   }
 })
-const mixbarMenus = computed(() => (settings.value?.menuMode === 'mixbar' ? getTopMenus(menus.value) : menus.value))
-const mixMenus = computed(() => (settings.value?.menuMode === 'mix' ? getTopMenus(menus.value) : menus.value))
-
-console.log('mixMenus', mixMenus.value)
 
 const handleSettingChange = (settings: ThemeSettingsProps) => {
   themeSetting.value.settings = settings
+}
+
+const handleMenuSelect = (item: AppRouteMenuItem) => {
+  router.push(item.name as string)
 }
 
 function generateMenuData(routes: RouteRecordRaw[]): AppRouteMenuItem[] {
@@ -97,11 +103,12 @@ function generateMenuData(routes: RouteRecordRaw[]): AppRouteMenuItem[] {
         >
           <Menu
             v-if="settings?.menuMode === 'siderbar' || settings?.menuMode === 'mixbar'"
-            :class="{ minbar: settings?.menuMode === 'mixbar' }"
+            :class="{ mixbar: settings?.menuMode === 'mixbar' }"
             :menus="mixbarMenus"
             class="border-r-none!"
             :collapse="settings?.menuMode !== 'mixbar' && collapsed"
             :background-color="settings?.menuMode !== 'mixbar' ? settings?.menuBackground : 'transparent'"
+            @select="handleMenuSelect"
           />
         </ElScrollbar>
         <!-- 二级菜单 -->
@@ -111,6 +118,7 @@ function generateMenuData(routes: RouteRecordRaw[]): AppRouteMenuItem[] {
             class="border-r-none!"
             :collapse="collapsed"
             :background-color="settings?.menuBackground"
+            @select="handleMenuSelect"
           />
         </ElScrollbar>
       </ElRow>
@@ -132,6 +140,7 @@ function generateMenuData(routes: RouteRecordRaw[]): AppRouteMenuItem[] {
           :menus="mixMenus"
           class="border-b-none!"
           mode="horizontal"
+          @select="handleMenuSelect"
         />
       </Header>
       <RouterView />
@@ -140,14 +149,17 @@ function generateMenuData(routes: RouteRecordRaw[]): AppRouteMenuItem[] {
 </template>
 
 <style scoped lang="scss">
-.minbar {
+.mixbar {
   :deep(.el-menu-item) {
+    flex-direction: column;
+    align-items: center;
     padding: 4px 0 !important;
     margin-top: 14px;
     height: auto;
     line-height: unset !important;
-    flex-direction: column;
+
     svg {
+      margin-right: 0;
       margin-bottom: 8px;
     }
   }

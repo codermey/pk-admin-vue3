@@ -1,5 +1,6 @@
 import type { IconifyIcon } from '@iconify/vue'
-import type { MenuProps as ElMenuProps, SubMenuProps as ElSubMenuProps } from 'element-plus'
+import type { NavigationFailure } from 'vue-router'
+import type { MenuProps as ElMenuProps, SubMenuProps as ElSubMenuProps, MenuItemClicked } from 'element-plus'
 
 type Component<T> = ReturnType<typeof defineComponent<T>> | (() => Promise<typeof import('*.vue')>) | (() => Promise<T>)
 
@@ -41,3 +42,14 @@ export interface MenuItemProps {
   data: AppRouteMenuItem
   collapse?: boolean
 }
+
+export type MenuSelectEmitType = [
+  index: string,
+  indexPath: string[],
+  item: MenuItemClicked,
+  routerResult?: Promise<void | NavigationFailure>,
+]
+
+export type MenuCloseEmitType = [index: string, indexPath: string[]]
+
+export type MenuOpenEmitType = [index: string, indexPath: string[]]
