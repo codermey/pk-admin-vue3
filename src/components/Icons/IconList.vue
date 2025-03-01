@@ -6,7 +6,7 @@ import type { IconListProps } from './types'
 const props = withDefaults(defineProps<IconListProps>(), {
   iconData: () => epIconData,
   collection: 'ep',
-  itemClass: 'py-1',
+  itemClass: 'py-2',
   iconClass: 'text-xl',
   showText: false,
 })
@@ -32,7 +32,7 @@ function toPascalCase(str: string) {
 </script>
 
 <template>
-  <ul class="grid grid-cols-[repeat(auto-fill,minmax(2rem,1fr))] border-l border-t">
+  <ul class="grid grid-cols-[repeat(auto-fill,minmax(8rem,1fr))] border-l border-t">
     <li
       v-for="(icon, index) in iconData"
       :key="index"
@@ -47,7 +47,7 @@ function toPascalCase(str: string) {
         :icon="collection + ':' + icon"
         :class="[iconClass, index === chooseIndex && activeClass]"
       ></component>
-      <span v-if="showText">{{ toPascalCase(icon) }}</span>
+      <span v-if="showText" class="mt-1 text-sm">{{ toPascalCase(icon) }}</span>
     </li>
   </ul>
 </template>
