@@ -8,8 +8,6 @@
  * darken('#ffffff', -0.2) // 变暗20% => '#cccccc'
  */
 export const darken = (color: string, rate: number): string => {
-  console.log('color', color)
-
   // 验证rate范围
   rate = Math.max(-1, Math.min(1, rate))
 
@@ -48,7 +46,6 @@ export const darken = (color: string, rate: number): string => {
     const hex = Math.max(0, Math.min(255, n)).toString(16)
     return hex.length === 1 ? '0' + hex : hex
   }
-  console.log('`#${toHex(newR)}${toHex(newG)}${toHex(newB)}`', `#${toHex(newR)}${toHex(newG)}${toHex(newB)}`)
 
   return `#${toHex(newR)}${toHex(newG)}${toHex(newB)}`
 }

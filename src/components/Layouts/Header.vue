@@ -41,6 +41,7 @@ const handleDarkModeChange = (darkMode: boolean) => {
 <template>
   <ElRow class="px-2" align="middle">
     <Iconify
+      v-if="localSettings.menuMode !== 'top'"
       :icon="collapsed ? 'ep:expand' : 'ep:fold'"
       class="cursor-pointer text-xl"
       @click="collapsed = !collapsed"

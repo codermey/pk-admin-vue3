@@ -10,7 +10,6 @@ const isDark = useStorage('dark-mode', props.darkMode)
 watch(
   () => props.darkMode,
   (newVal) => {
-    console.log('newVal', newVal)
     isDark.value = newVal
   },
   {
