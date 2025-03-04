@@ -35,7 +35,7 @@ const handleClose = () => {
 
 <template>
   <Iconify icon="mdi:cog" class="cursor-pointer text-xl" v-bind="$attrs" @click="drawer = true" />
-  <ElDrawer v-model="drawer" size="378" title="主题设置" @close="handleClose">
+  <ElDrawer v-model="drawer" class="w-[378px]! lt-sm:w-full!" title="主题设置" @close="handleClose">
     <ElForm :model="settings">
       <ElFormItem label="主题颜色">
         <ElColorPicker v-model="settings.themeColor" />

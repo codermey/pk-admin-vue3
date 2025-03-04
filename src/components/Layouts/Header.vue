@@ -39,17 +39,17 @@ const handleDarkModeChange = (darkMode: boolean) => {
 </script>
 
 <template>
-  <ElRow class="px-2" align="middle">
+  <ElRow class="px-2 flex-nowrap!" align="middle">
     <Iconify
       v-if="localSettings.menuMode !== 'top'"
       :icon="collapsed ? 'ep:expand' : 'ep:fold'"
-      class="cursor-pointer text-xl"
+      class="shrink-0 cursor-pointer text-xl"
       @click="collapsed = !collapsed"
     />
-    <div class="flex-grow">
+    <div class="relative w-full overflow-hidden">
       <slot />
     </div>
-    <ElRow align="middle">
+    <ElRow align="middle" class="flex-nowrap!">
       <ThemeSettings class="mr-4" v-bind="settings" @change="handleSettingChange" />
       <DarkModeToggle class="mr-4" :dark-mode="localSettings?.darkMode" @change="handleDarkModeChange" />
       <ChangeLocale :locales="locales" class="mr-4" />

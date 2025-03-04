@@ -9,6 +9,7 @@ const props = withDefaults(defineProps<MenuProps>(), {
   iconProps: () => ({
     class: 'text-lg mr-2',
   }),
+  ellipsis: true,
 })
 
 const emits = defineEmits<{
@@ -37,7 +38,7 @@ const menuProps = computed(() => {
 onMounted(() => {
   const parenItem = getParentMenu(filterMenus.value)
   if (parenItem && parenItem.meta?.key) {
-    menuRef.value?.open(parenItem.meta.key as string)
+    !props.collapse && menuRef.value?.open(parenItem.meta.key as string)
   }
 
   const activeMenu = getActiveMenu(filterMenus.value)

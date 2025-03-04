@@ -18,6 +18,9 @@ interface ThemeSettingOptions extends HeaderProps {
 const router = useRouter()
 const { getSubMenus, getTopMenus } = useMenu()
 
+// 是否移动端
+const isMobile = ref(false)
+// 是否折叠菜单
 const collapsed = ref(false)
 
 const themeSetting = ref<ThemeSettingOptions>({
@@ -52,10 +55,49 @@ const isFullIcon = computed(() => getSubMenus(menus.value).every((menu) => !!men
 const menuWidth = computed(() => (settings.value?.menuWidth ? settings.value.menuWidth + 'px' : '240px'))
 // mixbar 菜单宽度
 const mixbarMenuWidth = computed(() => {
+  if (isMobile.value) return '0px'
   if (settings.value?.menuMode === 'mixbar' && isFullIcon.value) {
     return collapsed.value ? 'auto' : menuWidth.value
   } else {
     return collapsed.value ? '64px' : menuWidth.value
+  }
+})
+
+const tmpWidth = ref(0)
+const changeWidthFlag = ref(false)
+useResizeObserver(document.body, (entries) => {
+  const { width } = entries[0].contentRect
+  if (tmpWidth.value === 0) {
+    tmpWidth.value = width
+  }
+
+  if (width > tmpWidth.value) {
+    // 扩大屏幕
+    changeWidthFlag.value = width < 640
+  } else {
+    // 缩小屏幕
+    changeWidthFlag.value = width > 1200
+  }
+
+  if (width < 640 && !changeWidthFlag.value) {
+    collapsed.value = true
+  }
+  if (width > 1200 && !changeWidthFlag.value) {
+    collapsed.value = false
+  }
+  isMobile.value = width < 440
+  tmpWidth.value = width
+})
+
+onBeforeMount(() => {
+  // 是否为移动端
+  if (
+    navigator.userAgent.match(
+      /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i,
+    )
+  ) {
+    isMobile.value = true
+    collapsed.value = true
   }
 })
 
@@ -64,6 +106,7 @@ const handleSettingChange = (settings: ThemeSettingsProps) => {
 }
 
 const handleMenuSelect = (item: AppRouteMenuItem) => {
+  isMobile.value && (collapsed.value = true)
   router.push(item.name as string)
 }
 
@@ -90,7 +133,7 @@ function generateMenuData(routes: RouteRecordRaw[]): AppRouteMenuItem[] {
   <div class="h-screen w-full flex">
     <div
       v-if="settings?.menuMode !== 'top'"
-      class="h-full border-r bg-white transition-width"
+      class="h-full shrink-0 border-r bg-white transition-width"
       :style="{ width: mixbarMenuWidth, backgroundColor: settings?.menuBackground }"
     >
       <ElRow class="h-full">
@@ -124,7 +167,7 @@ function generateMenuData(routes: RouteRecordRaw[]): AppRouteMenuItem[] {
       </ElRow>
     </div>
 
-    <div class="flex-1">
+    <div class="h-full w-full">
       <Header
         v-model:collapsed="collapsed"
         :locales="themeSetting.locales"
@@ -146,6 +189,24 @@ function generateMenuData(routes: RouteRecordRaw[]): AppRouteMenuItem[] {
       <RouterView />
     </div>
   </div>
+
+  <ElDrawer
+    v-if="isMobile"
+    :model-value="!collapsed"
+    direction="ltr"
+    size="100%"
+    header-class="mb-0!"
+    body-class="p-0!"
+    :style="{ backgroundColor: settings?.menuBackground }"
+    @close="collapsed = true"
+  >
+    <Menu
+      :menus="menus"
+      class="h-full border-r-none!"
+      :background-color="settings?.menuBackground"
+      @select="handleMenuSelect"
+    />
+  </ElDrawer>
 </template>
 
 <style scoped lang="scss">
