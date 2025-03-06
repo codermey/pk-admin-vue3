@@ -19,6 +19,15 @@
     "icons": "图标组件",
     "icon-picker": "图标选择器",
     "icon-list": "图标列表",
-    "notice-message": "消息通知"
+    "notice-message": "消息通知",
+    "login": {
+      "title": "欢迎回来",
+      "password": "密码",
+      "remember-account": "记住账号",
+      "username": "用户名",
+      "register-account": "注册账号",
+      "confirm": "登录",
+      "cancel": "取消"
+    }
   }
 }

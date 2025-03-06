@@ -1,14 +1,14 @@
 {
+  "components": {
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "hide-text": "Hide text",
+    "select-icon": "Select icon",
+    "show-text": "Show text"
+  },
   "message": {
     "copied": "Copied",
     "copy-success": "Copy success"
-  },
-  "components": {
-    "hide-text": "Hide text",
-    "select-icon": "Select icon",
-    "show-text": "Show text",
-    "cancel": "Cancel",
-    "confirm": "Confirm"
   },
   "pages": {
     "about": "About",
@@ -18,6 +18,15 @@
     "icon-list": "Icon List",
     "icon-picker": "Icon Picker",
     "icons": "Icons",
+    "login": {
+      "title": "Welcome back",
+      "password": "Password",
+      "remember-account": "Remember account",
+      "username": "Username",
+      "register-account": "Register account",
+      "confirm": "Login",
+      "cancel": "Cancel"
+    },
     "notice": "Notice",
     "notice-message": "Notice Message"
   }
