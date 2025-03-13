@@ -17,7 +17,9 @@ function getIcon(icon: string | IconifyIcon) {
 
 definePage({
   meta: {
+    title: '登录',
     layout: 'single-page',
+    hideMenu: true,
   },
 })
 </script>
