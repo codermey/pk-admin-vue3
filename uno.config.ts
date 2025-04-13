@@ -1,10 +1,4 @@
-import {
-  defineConfig,
-  presetIcons,
-  presetUno,
-  transformerDirectives,
-  transformerVariantGroup,
-} from 'unocss'
+import { defineConfig, presetIcons, presetUno, transformerDirectives, transformerVariantGroup } from 'unocss'
 
 export default defineConfig({
   presets: [
@@ -18,4 +12,11 @@ export default defineConfig({
     }),
   ],
   transformers: [transformerDirectives(), transformerVariantGroup()],
+  theme: {
+    colors: {
+      primary: 'var(--color-primary)',
+      'primary-3': 'var(--color-primary-light-3)',
+      'primary-5': 'var(--color-primary-light-5)',
+    },
+  },
 })
