@@ -2,6 +2,13 @@
 import { loadIcon, type IconifyIcon } from '@iconify/vue'
 import { useI18n } from 'vue-i18n'
 
+definePage({
+  meta: {
+    title: 'pages.icon-list',
+    icon: 'mdi:emoticon-neutral-outline',
+  },
+})
+
 const { t } = useI18n()
 
 const source = ref('')
@@ -32,13 +39,6 @@ function objectToSvg(obj: IconifyIcon) {
   const { left, top, width, height, rotate, vFlip, hFlip, body } = obj
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" transform="translate(${left}, ${top}) rotate(${rotate}) scale(${hFlip ? -1 : 1}, ${vFlip ? -1 : 1})">${body}</svg>`
 }
-
-definePage({
-  meta: {
-    title: 'pages.icon-list',
-    icon: 'mdi:emoticon-neutral-outline',
-  },
-})
 </script>
 
 <template>

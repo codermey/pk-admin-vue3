@@ -1,6 +1,16 @@
-<script setup lang="tsx">
+<script lang="tsx" setup>
 import type { IconifyIcon } from '@iconify/vue'
+import { getAssetsImageUrl } from '@/utils'
 import Iconify from '@/components/Icons/Iconify.vue'
+
+definePage({
+  meta: {
+    title: '登录',
+    layout: 'single-page',
+    backgroundImage: getAssetsImageUrl('login_bg.png'),
+    hideMenu: true,
+  },
+})
 
 const form = reactive({
   username: '',
@@ -8,36 +18,25 @@ const form = reactive({
   remember: false,
 })
 
-const onSubmit = () => {
-  console.log(form)
-}
 function getIcon(icon: string | IconifyIcon) {
-  return () => h(Iconify, { icon })
+  return () => <Iconify icon={icon} />
 }
-
-definePage({
-  meta: {
-    title: '登录',
-    layout: 'single-page',
-    hideMenu: true,
-  },
-})
 </script>
 
 <template>
-  <div class="mx-60 self-end">
+  <div class="self-end lt-xl:(self-center rounded-lg bg-white p-8 shadow-lg)">
     <h3 class="mb-5 text-2xl">{{ $t('pages.login.title') }}</h3>
 
     <ElForm :model="form" class="min-w-[350px]">
       <ElFormItem>
-        <ElInput v-model="form.username" :prefix-icon="getIcon('ep:user')" :placeholder="$t('pages.login.username')" />
+        <ElInput v-model="form.username" :placeholder="$t('pages.login.username')" :prefix-icon="getIcon('ep:user')" />
       </ElFormItem>
       <ElFormItem>
         <ElInput
           v-model="form.password"
-          type="password"
-          :prefix-icon="getIcon('ep:lock')"
           :placeholder="$t('pages.login.password')"
+          :prefix-icon="getIcon('ep:lock')"
+          type="password"
         />
       </ElFormItem>
 
@@ -50,7 +49,7 @@ definePage({
 
       <!-- 按钮 -->
       <ElFormItem>
-        <ElButton class="w-full" type="primary" @click="onSubmit">{{ $t('pages.login.confirm') }}</ElButton>
+        <ElButton class="w-full" type="primary">{{ $t('pages.login.confirm') }}</ElButton>
       </ElFormItem>
     </ElForm>
   </div>
