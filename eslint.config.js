@@ -19,6 +19,23 @@ export default [
   ...defineConfigWithVueTs(pluginVue.configs['flat/recommended'], vueTsConfigs.recommended),
 
   {
+    name: 'app/jsx-support',
+    languageOptions: {
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+      },
+    },
+    files: ['**/*.{tsx,vue}'],
+    rules: {
+      'vue/jsx-uses-vars': 'error',
+    },
+  },
+
+  {
     ...pluginVitest.configs.recommended,
     files: ['src/**/__tests__/*'],
   },
@@ -50,7 +67,7 @@ export default [
       'vue/define-macros-order': [
         'error',
         {
-          order: ['defineOptions', 'defineModel', 'defineProps', 'defineEmits', 'defineSlots'],
+          order: ['defineOptions', 'defineModel', 'defineProps', 'defineEmits', 'defineSlots', 'definePage'],
           defineExposeLast: false,
         },
       ],
