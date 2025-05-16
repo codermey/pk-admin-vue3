@@ -19,15 +19,18 @@
     "icon-picker": "Icon Picker",
     "icons": "Icons",
     "login": {
-      "title": "Welcome back",
-      "password": "Password",
-      "remember-account": "Remember account",
-      "username": "Username",
-      "register-account": "Register account",
+      "cancel": "Cancel",
       "confirm": "Login",
-      "cancel": "Cancel"
+      "password": "Password",
+      "register-account": "Register account",
+      "remember-account": "Remember account",
+      "title": "Welcome back",
+      "username": "Username"
     },
     "notice": "Notice",
-    "notice-message": "Notice Message"
+    "notice-message": "Notice Message",
+    "table": "Table",
+    "basic-table": "Basic Table",
+    "complex-table": "Complex Table"
   }
 }

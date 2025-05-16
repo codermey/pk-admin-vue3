@@ -48,7 +48,6 @@ export async function loadLocaleMessages(lang: string) {
   // load locale messages with dynamic import
   const messages = await localesMap[lang]()
   const elementPlusMessages = await filterElementPlusLocalesMap[lang]()
-
   // set locale and locale message
   i18n.global.setLocaleMessage(lang, {
     ...messages.default,

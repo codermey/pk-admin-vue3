@@ -167,7 +167,7 @@ function generateMenuData(routes: RouteRecordRaw[]): AppRouteMenuItem[] {
       </ElRow>
     </div>
 
-    <div class="h-full w-full">
+    <div class="h-full w-full flex flex-col">
       <Header
         v-model:collapsed="collapsed"
         :locales="themeSetting.locales"
@@ -186,7 +186,10 @@ function generateMenuData(routes: RouteRecordRaw[]): AppRouteMenuItem[] {
           @select="handleMenuSelect"
         />
       </Header>
-      <RouterView />
+
+      <div class="flex-1 overflow-y-auto">
+        <RouterView />
+      </div>
     </div>
   </div>
 

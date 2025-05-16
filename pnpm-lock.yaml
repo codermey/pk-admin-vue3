@@ -10,6 +10,9 @@ importers:
       '@intlify/unplugin-vue-i18n':
         specifier: ^6.0.3
         version: 6.0.3(@vue/compiler-dom@3.5.13)(eslint@9.19.0(jiti@2.4.2))(rollup@4.34.4)(typescript@5.7.3)(vue-i18n@10.0.5(vue@3.5.13(typescript@5.7.3)))(vue@3.5.13(typescript@5.7.3))
+      '@types/sortablejs':
+        specifier: ^1.15.8
+        version: 1.15.8
       '@unocss/reset':
         specifier: ^65.4.3
         version: 65.4.3
@@ -19,9 +22,15 @@ importers:
       element-plus:
         specifier: ^2.9.3
         version: 2.9.3(vue@3.5.13(typescript@5.7.3))
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
       pinia:
         specifier: ^2.3.1
         version: 2.3.1(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3))
+      sortablejs:
+        specifier: ^1.15.6
+        version: 1.15.6
       vue:
         specifier: ^3.5.12
         version: 3.5.13(typescript@5.7.3)
@@ -995,9 +1004,9 @@ packages:
       { integrity: sha512-6GT1BJ852gZ0gItNZN2krX5QAmea+cmdjMvsWohArAZ3GmHdnNANEcF9JjPXAMRtQ6Ux5E269ymamg/+WU6tQA== }
     engines: { node: '>= 16' }
 
-  '@intlify/message-compiler@11.0.0-rc.1':
+  '@intlify/message-compiler@12.0.0-alpha.2':
     resolution:
-      { integrity: sha512-TGw2uBfuTFTegZf/BHtUQBEKxl7Q/dVGLoqRIdw8lFsp9g/53sYn5iD+0HxIzdYjbWL6BTJMXCPUHp9PxDTRPw== }
+      { integrity: sha512-PD9C+oQbb7BF52hec0+vLnScaFkvnfX+R7zSbODYuRo/E2niAtGmHd0wPvEMsDhf9Z9b8f/qyDsVeZnD/ya9Ug== }
     engines: { node: '>= 16' }
 
   '@intlify/shared@10.0.5':
@@ -1005,14 +1014,14 @@ packages:
       { integrity: sha512-bmsP4L2HqBF6i6uaMqJMcFBONVjKt+siGluRq4Ca4C0q7W2eMaVZr8iCgF9dKbcVXutftkC7D6z2SaSMmLiDyA== }
     engines: { node: '>= 16' }
 
-  '@intlify/shared@11.0.0-rc.1':
+  '@intlify/shared@11.1.3':
     resolution:
-      { integrity: sha512-8tR1xe7ZEbkabTuE/tNhzpolygUn9OaYp9yuYAF4MgDNZg06C3Qny80bes2/e9/Wm3aVkPUlCw6WgU7mQd0yEg== }
+      { integrity: sha512-pTFBgqa/99JRA2H1qfyqv97MKWJrYngXBA/I0elZcYxvJgcCw3mApAoPW3mJ7vx3j+Ti0FyKUFZ4hWxdjKaxvA== }
     engines: { node: '>= 16' }
 
-  '@intlify/shared@11.1.1':
+  '@intlify/shared@12.0.0-alpha.2':
     resolution:
-      { integrity: sha512-2kGiWoXaeV8HZlhU/Nml12oTbhv7j2ufsJ5vQaa0VTjzUmZVdd/nmKFRAOJ/FtjO90Qba5AnZDwsrY7ZND5udA== }
+      { integrity: sha512-P2DULVX9nz3y8zKNqLw9Es1aAgQ1JGC+kgpx5q7yLmrnAKkPR5MybQWoEhxanefNJgUY5ehsgo+GKif59SrncA== }
     engines: { node: '>= 16' }
 
   '@intlify/unplugin-vue-i18n@6.0.3':
@@ -1402,6 +1411,10 @@ packages:
   '@types/sizzle@2.3.9':
     resolution:
       { integrity: sha512-xzLEyKB50yqCUPUJkIsrVvoWNfFUbIZI+RspLWt8u+tIW/BetMBZtgV2LY/2o+tYH8dRvQ+eoPf3NdhQCcLE2w== }
+
+  '@types/sortablejs@1.15.8':
+    resolution:
+      { integrity: sha512-b79830lW+RZfwaztgs1aVPgbasJ8e7AXtZYHTELNXZPsERt4ymJdjV4OccDbHQAvHrCcFpbF78jkm0R6h/pZVg== }
 
   '@types/svgo@2.6.4':
     resolution:
@@ -5514,6 +5527,10 @@ packages:
       { integrity: sha512-FtyOnWN/wCHTVXOMwvSv26d+ko5vWlIDD6zoUJ7LW8vh+ZBC8QdljveRP+crNrtBwioEUWy/4dMtbBjA4ioNlg== }
     engines: { node: '>=0.10.0' }
 
+  sortablejs@1.15.6:
+    resolution:
+      { integrity: sha512-aNfiuwMEpfBM/CN6LY0ibyhxPfPbyFeBTYJKCvzkJ2GkUpazIt3H+QIPAMHwqQ7tMKaHz1Qj+rJJCqljnf4p3A== }
+
   source-map-js@1.2.1:
     resolution:
       { integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA== }
@@ -7225,8 +7242,8 @@ snapshots:
 
   '@intlify/bundle-utils@10.0.0(vue-i18n@10.0.5(vue@3.5.13(typescript@5.7.3)))':
     dependencies:
-      '@intlify/message-compiler': 11.0.0-rc.1
-      '@intlify/shared': 11.0.0-rc.1
+      '@intlify/message-compiler': 12.0.0-alpha.2
+      '@intlify/shared': 12.0.0-alpha.2
       acorn: 8.14.0
       escodegen: 2.1.0
       estree-walker: 2.0.2
@@ -7247,23 +7264,23 @@ snapshots:
       '@intlify/shared': 10.0.5
       source-map-js: 1.2.1
 
-  '@intlify/message-compiler@11.0.0-rc.1':
+  '@intlify/message-compiler@12.0.0-alpha.2':
     dependencies:
-      '@intlify/shared': 11.0.0-rc.1
+      '@intlify/shared': 12.0.0-alpha.2
       source-map-js: 1.2.1
 
   '@intlify/shared@10.0.5': {}
 
-  '@intlify/shared@11.0.0-rc.1': {}
+  '@intlify/shared@11.1.3': {}
 
-  '@intlify/shared@11.1.1': {}
+  '@intlify/shared@12.0.0-alpha.2': {}
 
   '@intlify/unplugin-vue-i18n@6.0.3(@vue/compiler-dom@3.5.13)(eslint@9.19.0(jiti@2.4.2))(rollup@4.34.4)(typescript@5.7.3)(vue-i18n@10.0.5(vue@3.5.13(typescript@5.7.3)))(vue@3.5.13(typescript@5.7.3))':
     dependencies:
       '@eslint-community/eslint-utils': 4.4.1(eslint@9.19.0(jiti@2.4.2))
       '@intlify/bundle-utils': 10.0.0(vue-i18n@10.0.5(vue@3.5.13(typescript@5.7.3)))
-      '@intlify/shared': 11.1.1
-      '@intlify/vue-i18n-extensions': 8.0.0(@intlify/shared@11.1.1)(@vue/compiler-dom@3.5.13)(vue-i18n@10.0.5(vue@3.5.13(typescript@5.7.3)))(vue@3.5.13(typescript@5.7.3))
+      '@intlify/shared': 11.1.3
+      '@intlify/vue-i18n-extensions': 8.0.0(@intlify/shared@11.1.3)(@vue/compiler-dom@3.5.13)(vue-i18n@10.0.5(vue@3.5.13(typescript@5.7.3)))(vue@3.5.13(typescript@5.7.3))
       '@rollup/pluginutils': 5.1.4(rollup@4.34.4)
       '@typescript-eslint/scope-manager': 8.23.0
       '@typescript-eslint/typescript-estree': 8.23.0(typescript@5.7.3)
@@ -7285,11 +7302,11 @@ snapshots:
       - supports-color
       - typescript
 
-  '@intlify/vue-i18n-extensions@8.0.0(@intlify/shared@11.1.1)(@vue/compiler-dom@3.5.13)(vue-i18n@10.0.5(vue@3.5.13(typescript@5.7.3)))(vue@3.5.13(typescript@5.7.3))':
+  '@intlify/vue-i18n-extensions@8.0.0(@intlify/shared@11.1.3)(@vue/compiler-dom@3.5.13)(vue-i18n@10.0.5(vue@3.5.13(typescript@5.7.3)))(vue@3.5.13(typescript@5.7.3))':
     dependencies:
       '@babel/parser': 7.26.7
     optionalDependencies:
-      '@intlify/shared': 11.1.1
+      '@intlify/shared': 11.1.3
       '@vue/compiler-dom': 3.5.13
       vue: 3.5.13(typescript@5.7.3)
       vue-i18n: 10.0.5(vue@3.5.13(typescript@5.7.3))
@@ -7516,6 +7533,8 @@ snapshots:
   '@types/sinonjs__fake-timers@8.1.1': {}
 
   '@types/sizzle@2.3.9': {}
+
+  '@types/sortablejs@1.15.8': {}
 
   '@types/svgo@2.6.4':
     dependencies:
@@ -11261,6 +11280,8 @@ snapshots:
       use: 3.1.1
     transitivePeerDependencies:
       - supports-color
+
+  sortablejs@1.15.6: {}
 
   source-map-js@1.2.1: {}
 

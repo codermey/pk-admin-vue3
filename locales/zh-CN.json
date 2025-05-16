@@ -28,6 +28,9 @@
       "register-account": "注册账号",
       "confirm": "登录",
       "cancel": "取消"
-    }
+    },
+    "table": "表格组件",
+    "basic-table": "基础表格",
+    "complex-table": "复杂表格"
   }
 }
