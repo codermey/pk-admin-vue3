@@ -31,12 +31,14 @@ export const forwardEmitEvents = (emits: any, events: string[], prefix = '') => 
 }
 
 export const forwardExposeEvents = (ref: Ref, events: string[]) => {
-  const exposeMethods: Record<string, (...args: any[]) => void> = {}
+  const exposeMethods: Record<string, any> = {}
 
   events.forEach((event) => {
     exposeMethods[event] = (...args: any[]) => {
       if (ref.value && typeof ref.value[event] === 'function') {
-        ref.value[event](...args)
+        return ref.value[event](...args)
+      } else {
+        return ref.value[event]
       }
     }
   })
