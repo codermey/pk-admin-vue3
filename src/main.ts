@@ -1,8 +1,13 @@
 import 'virtual:uno.css'
 import '@unocss/reset/tailwind-compat.css'
 import 'virtual:svg-icons-register'
+
+import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
+
 import '@/assets/styles/index.scss'
+
+import ElementPlus from 'element-plus'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
@@ -14,6 +19,7 @@ import i18n from './modules/i18n'
 const app = createApp(App)
 
 app.use(createPinia())
+app.use(ElementPlus)
 app.use(router)
 app.use(i18n)
 app.mount('#app')
