@@ -30,7 +30,9 @@
       "cancel": "取消"
     },
     "table": "表格组件",
-    "basic-table": "基础表格",
-    "complex-table": "复杂表格"
+    "table-basic": "基础表格",
+    "table-complex": "复杂表格",
+    "form": "表单组件",
+    "form-basic": "基础表单"
   }
 }

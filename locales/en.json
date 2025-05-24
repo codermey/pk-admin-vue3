@@ -30,7 +30,9 @@
     "notice": "Notice",
     "notice-message": "Notice Message",
     "table": "Table",
-    "basic-table": "Basic Table",
-    "complex-table": "Complex Table"
+    "table-basic": "Basic Table",
+    "table-complex": "Complex Table",
+    "form": "Form",
+    "form-basic": "Form Basic"
   }
 }
