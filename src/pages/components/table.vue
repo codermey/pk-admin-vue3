@@ -2,6 +2,7 @@
 definePage({
   meta: {
     title: 'pages.table',
+    order: 1002,
   },
 })
 </script>

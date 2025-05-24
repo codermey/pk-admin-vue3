@@ -3,8 +3,9 @@ import type { TableProColumn } from '@/components/Table/types'
 
 definePage({
   meta: {
-    title: 'pages.basic-table',
+    title: 'pages.table-basic',
     icon: 'mdi:table',
+    order: 1,
   },
 })
 

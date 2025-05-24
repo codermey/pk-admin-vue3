@@ -5,8 +5,9 @@ import type { TableColumnCtx, TableInstance } from 'element-plus'
 
 definePage({
   meta: {
-    title: 'pages.complex-table',
+    title: 'pages.table-complex',
     icon: 'mdi:table-large',
+    order: 2,
   },
 })
 
