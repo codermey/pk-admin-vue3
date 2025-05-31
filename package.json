@@ -46,11 +46,13 @@
     "@types/sortablejs": "^1.15.8",
     "@unocss/reset": "^65.4.3",
     "@vueuse/core": "^12.5.0",
+    "echarts": "^5.6.0",
     "element-plus": "^2.9.3",
     "lodash": "^4.17.21",
     "pinia": "^2.3.1",
     "sortablejs": "^1.15.6",
     "vue": "^3.5.12",
+    "vue-echarts": "^7.0.3",
     "vue-i18n": "10",
     "vue-router": "^4.5.0"
   },

@@ -49,3 +49,16 @@ export const darken = (color: string, rate: number): string => {
 
   return `#${toHex(newR)}${toHex(newG)}${toHex(newB)}`
 }
+
+/**
+ * 判断是否为颜色值
+ * @param value
+ * @returns
+ */
+export const isColor = (value: string) => {
+  if (typeof value !== 'string') return false
+
+  const style = new Option().style
+  style.color = value
+  return style.color !== ''
+}

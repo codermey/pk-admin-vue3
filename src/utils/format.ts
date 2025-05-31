@@ -16,6 +16,22 @@ export const camelToKebab = (str: string) => {
   return str.replace(/([A-Z])/g, '-$1').toLowerCase()
 }
 
+/**
+ * 将字符串转换为样式对象
+ * @param style 字符串
+ * @returns 样式对象
+ */
+export const parseStyleString = (style: string) => {
+  return style.split(';').reduce(
+    (acc, item) => {
+      const [key, value] = item.split(':')
+      acc[camelToKebab(key)] = value
+      return acc
+    },
+    {} as Record<string, string>,
+  )
+}
+
 export const forwardEmitEvents = (emits: any, events: string[], prefix = '') => {
   const forwardEmits: Record<string, (...args: any[]) => void> = {}
 
