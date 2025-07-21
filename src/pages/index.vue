@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { useUserStore } from '@/stores'
 import type { EChartsOption } from 'echarts'
+import type { VditorOptions } from '@/components/Editor/types'
 
 definePage({
   meta: {
@@ -74,6 +75,10 @@ const option = ref<EChartsOption>({
   ],
 })
 
+const editorOptions = ref<VditorOptions>({
+  lang: 'en_US',
+})
+
 const addPermission = () => {
   useUserStore().permission.push('user')
 }
@@ -125,4 +130,9 @@ const addPermission = () => {
   </div>
 
   <ECharts :option="option" :style="{ width: '100%', height: '1000px' }" />
+
+  <div class="h-200 w-full">
+    <Editor :options="editorOptions" />
+    <el-button @click="editorOptions.lang = 'zh_CN'">中文</el-button>
+  </div>
 </template>

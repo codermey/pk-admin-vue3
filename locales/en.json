@@ -33,6 +33,7 @@
     "table-basic": "Basic Table",
     "table-complex": "Complex Table",
     "form": "Form",
-    "form-basic": "Form Basic"
+    "form-basic": "Form Basic",
+    "editor": "Editor"
   }
 }

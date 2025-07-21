@@ -33,6 +33,7 @@
     "table-basic": "基础表格",
     "table-complex": "复杂表格",
     "form": "表单组件",
-    "form-basic": "基础表单"
+    "form-basic": "基础表单",
+    "editor": "编辑器"
   }
 }
